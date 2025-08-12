@@ -1,0 +1,66 @@
+# App Name
+spring:
+  application:
+    name: userService
+    #PostgreSQL DB Config
+  datasource:
+    url: jdbc:postgresql://localhost:5432/userdb
+    username: postgres
+    password: postgres12
+  #JPA Config
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  #Caching
+  cache:
+    type: redis
+  redis:
+    host: localhost
+    port: 6379
+
+#Server
+server:
+  port: 8081
+
+logging:
+  level:
+    root: WARN  # Suppress most framework logs
+
+    # ✅ Show Spring Boot startup info (optional)
+    org.springframework.boot.StartupInfoLogger: INFO
+    org.springframework.boot.web: INFO
+
+    # ✅ Show only your custom app logs
+    com.microservices.userService: INFO
+
+    # ✅ Show Redis operations (useful for cache debugging)
+    org.springframework.data.redis: INFO
+
+    # ✅ Show SQL queries (optional - set to DEBUG if you want full SQL logs)
+    org.springframework.jdbc.core.JdbcTemplate: INFO
+    org.springframework.jdbc.datasource: WARN
+
+  # Optional: group logging for clarity
+  group:
+    db: org.hibernate, org.springframework.jdbc
+    web: org.springframework.web, org.springframework.boot.autoconfigure.web
+
+  org.springframework.cache: DEBUG
+  org.springframework.data.redis: DEBUG
+
+  # Optional: pattern cleanup (only if you want custom formatting)
+  pattern:
+    console: "%d{HH:mm:ss.SSS} %-5level [%thread] %logger{36} - %msg%n"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,caches
+
+
+
+
+
