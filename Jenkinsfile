@@ -11,10 +11,10 @@ pipeline {
     ansiColor('xterm')
   }
 
-  triggers {
-    // enable later once webhook is set
-    // pollSCM('H/2 * * * *')
-  }
+//   triggers {
+//     // enable later once webhook is set
+//     // pollSCM('H/2 * * * *')
+//   }
 
   stages {
     stage('Checkout') {
